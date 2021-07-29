@@ -28,6 +28,11 @@ public class Companhia {
     public Companhia() {
     }
 
+    public Companhia(String nome, Pais pais) {
+        this.nome = nome;
+        this.pais = pais;
+    }
+
     public Companhia(Long id, String nome, LocalDateTime instanteCriacao, Pais pais) {
         this.id = id;
         this.nome = nome;
