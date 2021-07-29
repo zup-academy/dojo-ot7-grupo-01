@@ -1,4 +1,4 @@
-package br.com.zup.edu.nossositedeviagens;
+package br.com.zup.edu.nossositedeviagens.cadastropais;
 
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,8 @@ public class PaisRestController {
 
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping
-    public PaisRequest savePais(@RequestBody @Valid PaisRequest paisRequest){
-
+    public String savePais(@RequestBody @Valid PaisRequest paisRequest){
+        Pais pais = paisRepository.save(paisRequest.toModel());
+        return "Pais criado com id: " + pais.getId() ;
     }
 }

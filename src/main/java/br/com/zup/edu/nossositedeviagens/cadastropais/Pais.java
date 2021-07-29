@@ -1,4 +1,4 @@
-package br.com.zup.edu.nossositedeviagens;
+package br.com.zup.edu.nossositedeviagens.cadastropais;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,10 @@ public class Pais {
     private String nome;
 
     public Pais() {
+    }
+
+    public Pais(String nome) {
+        this.nome = nome;
     }
 
     public Pais(Long id, String nome) {
