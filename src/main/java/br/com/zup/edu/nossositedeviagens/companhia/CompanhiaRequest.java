@@ -2,17 +2,21 @@ package br.com.zup.edu.nossositedeviagens.companhia;
 
 
 import br.com.zup.edu.nossositedeviagens.cadastropais.Pais;
+import br.com.zup.edu.nossositedeviagens.validacao.UniqueValue;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class CompanhiaRequest {
 
-    @NotBlank
+    @NotBlank @UniqueValue(domainClass = Companhia.class, fieldName = "nome")
     private String nome;
 
+    @NotNull
     private Long paisId;
 
+    @Deprecated
     public CompanhiaRequest() {
     }
 

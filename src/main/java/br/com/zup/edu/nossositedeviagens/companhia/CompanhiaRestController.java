@@ -1,16 +1,19 @@
 package br.com.zup.edu.nossositedeviagens.companhia;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/companhia")
 public class CompanhiaRestController {
+
+    @PersistenceContext
+    EntityManager manager;
 
     CompanhiaRepository companhiaRepository;
 
@@ -20,7 +23,9 @@ public class CompanhiaRestController {
 
     @PostMapping
     @Transactional
+    @ResponseStatus(code = HttpStatus.CREATED)
     public String saveCompanhia(@RequestBody @Valid CompanhiaRequest companhiaRequest){
-        return "Deu certo";
+        Companhia companhia = companhiaRepository.save(companhiaRequest.toModel(manager));
+        return "Companhia criada com o id "+companhia.getId() ;
     }
 }

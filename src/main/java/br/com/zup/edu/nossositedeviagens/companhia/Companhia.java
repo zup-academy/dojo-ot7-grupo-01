@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,15 +21,16 @@ public class Companhia {
     private String nome;
 
     @CreationTimestamp
-    private LocalDateTime instanteCriacao;
+    private LocalDateTime instanteCriacao = LocalDateTime.now();
 
     @ManyToOne
     private Pais pais;
 
+    @Deprecated
     public Companhia() {
     }
 
-    public Companhia(String nome, Pais pais) {
+    public Companhia(@NotBlank String nome, @NotNull Pais pais) {
         this.nome = nome;
         this.pais = pais;
     }
