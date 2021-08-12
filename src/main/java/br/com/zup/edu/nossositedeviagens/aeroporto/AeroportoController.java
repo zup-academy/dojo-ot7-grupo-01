@@ -33,6 +33,3 @@ public class AeroportoController {
 }
 
 
-//Novo aeroporto criado e 201 retornado
-
-//Em caso de falha, retorne 400 e os erros de validação

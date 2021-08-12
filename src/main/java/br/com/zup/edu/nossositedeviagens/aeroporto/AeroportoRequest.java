@@ -1,5 +1,7 @@
 package br.com.zup.edu.nossositedeviagens.aeroporto;
 
+import br.com.zup.edu.nossositedeviagens.cadastropais.Pais;
+import br.com.zup.edu.nossositedeviagens.validacao.ExistsId;
 import br.com.zup.edu.nossositedeviagens.validacao.UniqueValue;
 
 import javax.persistence.EntityManager;
@@ -12,6 +14,7 @@ public class AeroportoRequest {
     @UniqueValue(domainClass = Aeroporto.class, fieldName = "nome")
     private String nome;
     @NotNull
+    @ExistsId(domainClass = Pais.class, fieldName = "id")
     private Long paisId;
 
     public AeroportoRequest(String nome, Long paisId) {
@@ -20,10 +23,9 @@ public class AeroportoRequest {
     }
 
     public Aeroporto toModel(EntityManager manager) {
-        //TODO:lógica
 
-        //Pais pais = manager.find(Pais.class, paisId);
-        //return new Companhia(nome, pais);
+        Pais pais = manager.find(Pais.class, paisId);
+        return new Aeroporto(nome, pais);
     }
 
 
