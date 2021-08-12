@@ -1,5 +1,7 @@
 package br.com.zup.edu.nossositedeviagens.rota;
 
+import br.com.zup.edu.nossositedeviagens.exception.RegraDeNegocioException;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -37,8 +39,9 @@ public class RotaRequest {
 
     private String validaOrigemDestino (String origem, String destino){
         if(origem.equals(destino)){
-            throw new RegraDeNegocioException("Não pode ");
+            throw new RegraDeNegocioException("Aeroporto de origem e destino não podem ser o mesmo.");
         }
+        return "";
     }
 
 }
